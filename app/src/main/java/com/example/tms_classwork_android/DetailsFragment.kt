@@ -1,12 +1,19 @@
 package com.example.tms_classwork_android
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.example.tms_classwork_android.BundleConstants.IMAGE_VIEW
+import com.example.tms_classwork_android.ItemsFragment.Companion.DATE
+import com.example.tms_classwork_android.ItemsFragment.Companion.NAME
+
+
+//1 способ создания констант
+
 
 class DetailsFragment : Fragment() {
 
@@ -27,13 +34,14 @@ class DetailsFragment : Fragment() {
         val bundle = arguments
         bundle?.let { safeBundle ->
 
-            val name = safeBundle.getString("name")
-            val date = safeBundle.getString("date")
-            val image = safeBundle.getInt("imageView")
+            val name = safeBundle.getString(NAME)
+            val date = safeBundle.getString(DATE)
+            val image = safeBundle.getInt(IMAGE_VIEW)
 
             detailsName.text = name
             detailsDate.text = date
             detailsImage.setBackgroundResource(image)
         }
     }
+
 }
