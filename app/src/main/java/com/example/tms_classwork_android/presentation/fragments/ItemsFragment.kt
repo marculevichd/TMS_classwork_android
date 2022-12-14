@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android
+package com.example.tms_classwork_android.presentation.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tms_classwork_android.BundleConstants.IMAGE_VIEW
-import com.example.tms_classwork_android.adapter.ItemsAdapter
-import com.example.tms_classwork_android.listener.itemListener
+import com.example.tms_classwork_android.utils.BundleConstants.IMAGE_VIEW
+import com.example.tms_classwork_android.R
+import com.example.tms_classwork_android.presentation.adapter.ItemsAdapter
+import com.example.tms_classwork_android.domain.listener.itemListener
+import com.example.tms_classwork_android.presentation.factory.ItemsViewModelsFactory
+import com.example.tms_classwork_android.presentation.viewmodel.ItemsViewModel
+import com.example.tms_classwork_android.presentation.viewmodel.MyParam
 
-//not use
-//const val NAME = "name"
 
 class ItemsFragment : Fragment(), itemListener {
 
-    private lateinit var itemsAdapter: ItemsAdapter // private var itemsAdapter: ItemsAdapter = ItemsAdapter() можно так но не нужно
+    private lateinit var itemsAdapter: ItemsAdapter
 
     private val viewModel: ItemsViewModel by viewModels {
         ItemsViewModelsFactory(MyParam())
@@ -51,7 +53,6 @@ class ItemsFragment : Fragment(), itemListener {
         }
 
         viewModel.bundle.observe(viewLifecycleOwner){navBundle ->
-            //проверка на навигацию пользователя
             if(navBundle != null) {
                 val detailsFragment = DetailsFragment()
                 val bundle = Bundle()

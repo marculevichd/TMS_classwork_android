@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.model
+package com.example.tms_classwork_android.domain.model
 
 data class ItemsModel(
     val image: Int,

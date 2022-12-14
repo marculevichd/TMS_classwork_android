@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android
+package com.example.tms_classwork_android.presentation.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentOnBoardingBinding
+import com.example.tms_classwork_android.presentation.viewmodel.OnBoardingViewModel
 
 
 class OnBoardingFragment : Fragment() {

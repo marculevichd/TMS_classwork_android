@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.listener
+package com.example.tms_classwork_android.domain.listener
 
 interface itemListener {
 
