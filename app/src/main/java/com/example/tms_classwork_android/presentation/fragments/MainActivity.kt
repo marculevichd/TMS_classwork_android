@@ -3,6 +3,7 @@ package com.example.tms_classwork_android.presentation.fragments
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.tms_classwork_android.R
+import com.example.tms_classwork_android.presentation.dataBinding.LoginFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -10,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()//полезно для дз(вложенность)
-        fragmentTransaction.add(R.id.activity_container, OnBoardingFragment())
+        fragmentTransaction.add(R.id.activity_container, LoginFragment())
         fragmentTransaction.commit()
     }
 }
