@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentOnBoardingBinding
+import com.example.tms_classwork_android.presentation.Navigation
 import com.example.tms_classwork_android.presentation.viewmodel.OnBoardingViewModel
 
 
@@ -34,10 +34,7 @@ class OnBoardingFragment : Fragment() {
 
         viewModel.nav.observe(viewLifecycleOwner) {
             if (it != null) {
-                parentFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.activity_container, ItemsFragment())
-                    .commit()
+                Navigation.fmReplace(parentFragmentManager, ItemsFragment(), false)
                 viewModel.finishPerformed()
             }
         }
