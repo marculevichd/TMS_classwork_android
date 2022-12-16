@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class OnBoardingViewModel : ViewModel() {
 
+
+    val onBoardingText = MutableLiveData<String>("default value")
+
     private val _nav = MutableLiveData<Unit?>()
     val nav: LiveData<Unit?> = _nav
 
