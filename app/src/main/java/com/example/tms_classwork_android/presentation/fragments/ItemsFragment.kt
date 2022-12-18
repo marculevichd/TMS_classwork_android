@@ -20,15 +20,16 @@ import com.example.tms_classwork_android.presentation.factory.ItemsViewModelsFac
 import com.example.tms_classwork_android.presentation.viewmodel.ItemsViewModel
 import com.example.tms_classwork_android.utils.BundleConstants.DATE
 import com.example.tms_classwork_android.utils.BundleConstants.NAME
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ItemsFragment : Fragment(), itemListener {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels {
-        ItemsViewModelsFactory(ItemsInteractor(ItemsRepositoryImpl()))
-    }
+    private val viewModel: ItemsViewModel by viewModels()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

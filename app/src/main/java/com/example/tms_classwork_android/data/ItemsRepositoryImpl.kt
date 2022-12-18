@@ -3,8 +3,10 @@ package com.example.tms_classwork_android.data
 import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.domain.ItemsRepository
 import com.example.tms_classwork_android.domain.model.ItemsModel
+import javax.inject.Inject
 
-class ItemsRepositoryImpl: ItemsRepository {
+
+class ItemsRepositoryImpl @Inject constructor(): ItemsRepository {
     override fun getData(): List<ItemsModel> {
         val listItems = listOf<ItemsModel>(
             ItemsModel(
