@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.tms_classwork_android.R
-import com.example.tms_classwork_android.domain.ItemsInteractor
+import com.example.tms_classwork_android.domain.items.ItemsInteractor
 import com.example.tms_classwork_android.domain.model.ItemsModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

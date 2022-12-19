@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.presentation.viewmodel
+package com.example.tms_classwork_android.presentation.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

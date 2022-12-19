@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.presentation.fragments
+package com.example.tms_classwork_android.presentation.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,11 @@ import androidx.fragment.app.viewModels
 import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentLoginBinding
 import com.example.tms_classwork_android.presentation.Navigation.fmReplace
-import com.example.tms_classwork_android.presentation.viewmodel.LoginViewModel
+import com.example.tms_classwork_android.presentation.home.HomeFragment
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -22,7 +25,7 @@ class LoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,16 +33,22 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-        binding.viewHandler = ViewHandler()
-        binding.lifecycleOwner = viewLifecycleOwner
-    }
 
-    inner class ViewHandler{
-        fun goToTheOnBoarding(){
-            fmReplace(parentFragmentManager, OnBoardingFragment(), false)
+        binding.buttonShowCreds.setOnClickListener {
+            viewModel.loginUser(
+                binding.etLogin.text.toString(),
+                binding.etPassword.text.toString()
+            )
         }
+
+        viewModel.nav.observe(viewLifecycleOwner) {
+            fmReplace(parentFragmentManager, HomeFragment(), false)
+        }
+
     }
 
 
 }
+
+
+

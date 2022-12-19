@@ -1,60 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
-    tools:context=".presentation.dataBinding.LoginFragment">
+    tools:context=".presentation.home.HomeFragment">
+
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/homeFragment_textUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/et_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/et_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="login"
+        android:text="Ваш логин и пароль:"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47000003" />
+        app:layout_constraintVertical_bias="0.147" />
 
-    <EditText
-        android:id="@+id/et_password"
+    <TextView
+        android:id="@+id/textViewUserCreds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="password"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintTop_toBottomOf="@+id/homeFragment_textUser"
+        app:layout_constraintVertical_bias="0.205" />
 
     <Button
-        android:id="@+id/button_show_creds"
+        android:id="@+id/btn_goToOnBoarding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show creads"
+        android:layout_marginBottom="204dp"
+        android:text="@string/go_to_on_boarding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_password" />
-
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserCreds"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-

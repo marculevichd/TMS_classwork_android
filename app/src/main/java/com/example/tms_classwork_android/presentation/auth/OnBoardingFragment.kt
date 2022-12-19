@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.presentation.fragments
+package com.example.tms_classwork_android.presentation.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.tms_classwork_android.databinding.FragmentOnBoardingBinding
 import com.example.tms_classwork_android.presentation.Navigation
-import com.example.tms_classwork_android.presentation.viewmodel.OnBoardingViewModel
+import com.example.tms_classwork_android.presentation.home.ItemsFragment
 
 
 class OnBoardingFragment : Fragment() {

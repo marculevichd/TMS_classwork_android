@@ -1,7 +1,7 @@
-package com.example.tms_classwork_android.data
+package com.example.tms_classwork_android.data.items
 
 import com.example.tms_classwork_android.R
-import com.example.tms_classwork_android.domain.ItemsRepository
+import com.example.tms_classwork_android.domain.items.ItemsRepository
 import com.example.tms_classwork_android.domain.model.ItemsModel
 import javax.inject.Inject
 

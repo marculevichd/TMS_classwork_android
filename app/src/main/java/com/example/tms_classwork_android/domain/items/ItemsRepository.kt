@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.domain
+package com.example.tms_classwork_android.domain.items
 
 import com.example.tms_classwork_android.domain.model.ItemsModel
 

@@ -8,13 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.tms_classwork_android.presentation.viewmodel.OnBoardingViewModel" />
+            type="com.example.tms_classwork_android.presentation.auth.OnBoardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.fragments.OnBoardingFragment">
+        tools:context=".presentation.auth.OnBoardingFragment">
 
 
         <TextView

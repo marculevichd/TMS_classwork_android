@@ -1,4 +1,4 @@
-package com.example.tms_classwork_android.presentation.fragments
+package com.example.tms_classwork_android.presentation.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,12 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tms_classwork_android.utils.BundleConstants.IMAGE_VIEW
 import com.example.tms_classwork_android.R
-import com.example.tms_classwork_android.data.ItemsRepositoryImpl
-import com.example.tms_classwork_android.domain.ItemsInteractor
 import com.example.tms_classwork_android.presentation.adapter.ItemsAdapter
 import com.example.tms_classwork_android.domain.listener.itemListener
 import com.example.tms_classwork_android.presentation.Navigation
-import com.example.tms_classwork_android.presentation.factory.ItemsViewModelsFactory
 import com.example.tms_classwork_android.presentation.viewmodel.ItemsViewModel
 import com.example.tms_classwork_android.utils.BundleConstants.DATE
 import com.example.tms_classwork_android.utils.BundleConstants.NAME
