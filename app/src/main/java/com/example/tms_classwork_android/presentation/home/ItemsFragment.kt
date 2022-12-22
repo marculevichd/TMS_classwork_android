@@ -6,74 +6,81 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tms_classwork_android.utils.BundleConstants.IMAGE_VIEW
 import com.example.tms_classwork_android.R
+import com.example.tms_classwork_android.databinding.FragmentItemsBinding
 import com.example.tms_classwork_android.presentation.adapter.ItemsAdapter
 import com.example.tms_classwork_android.domain.listener.itemListener
-import com.example.tms_classwork_android.presentation.Navigation
-import com.example.tms_classwork_android.presentation.viewmodel.ItemsViewModel
+import com.example.tms_classwork_android.domain.model.ItemsModel
+import com.example.tms_classwork_android.utils.Navigation
 import com.example.tms_classwork_android.utils.BundleConstants.DATE
 import com.example.tms_classwork_android.utils.BundleConstants.NAME
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class ItemsFragment : Fragment(), itemListener {
+class ItemsFragment : Fragment(), itemListener, ItemsView {
 
     private lateinit var itemsAdapter: ItemsAdapter
 
-    private val viewModel: ItemsViewModel by viewModels()
+    private var _binding: FragmentItemsBinding? = null
+    private val binding get() = _binding!!
 
 
+    @Inject
+    lateinit var itemsPresenter: ItemsPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_items, container, false)
+    ): View {
+        _binding = FragmentItemsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        itemsPresenter.setView(this)
 
         itemsAdapter = ItemsAdapter(this)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = itemsAdapter
 
-        viewModel.getData()
+        itemsPresenter.getItems()
 
-        viewModel.items.observe(viewLifecycleOwner){ listItems ->
-            itemsAdapter.submitList(listItems)
-        }
-
-        viewModel.msg.observe(viewLifecycleOwner){ msg ->
-            Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
-        }
-
-        viewModel.bundle.observe(viewLifecycleOwner){navBundle ->
-            if(navBundle != null) {
-                val detailsFragment = DetailsFragment()
-                val bundle = Bundle()
-                bundle.putString(NAME, navBundle.name)
-                bundle.putString(DATE, navBundle.date)
-                bundle.putInt(IMAGE_VIEW, navBundle.image)
-                detailsFragment.arguments = bundle
-
-                Navigation.fmReplace(parentFragmentManager, detailsFragment, true)
-                viewModel.userNavigated()
-            }
-        }
     }
 
     override fun onClick() {
-        viewModel.imageViewClicked()
+        itemsPresenter.imageViewClicked()
     }
 
     override fun onElementSelected(name: String, date: String, imageView: Int) {
-        viewModel.elementClicked(name, date, imageView)
+        itemsPresenter.itemClicked(name, date, imageView)
     }
 
+
+    override fun itemsReceived(itemsList: List<ItemsModel>) {
+        itemsAdapter.submitList(itemsList)
+    }
+
+    override fun imageViewClicked(msg: Int) {//////////////////// INT msg STRING msg
+        Toast.makeText(context, getString(msg), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun itemClicked(navigateWithBundle: NavigateWithBundle) {
+
+        val detailsFragment = DetailsFragment()
+        val bundle = Bundle()
+        bundle.putString(NAME, navigateWithBundle.name)
+        bundle.putString(DATE, navigateWithBundle.date)
+        bundle.putInt(IMAGE_VIEW, navigateWithBundle.image)
+        detailsFragment.arguments = bundle
+
+        Navigation.fmReplace(parentFragmentManager, detailsFragment, true)
+    }
 }

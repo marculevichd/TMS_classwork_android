@@ -5,22 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentLoginBinding
-import com.example.tms_classwork_android.presentation.Navigation.fmReplace
+import com.example.tms_classwork_android.utils.Navigation.fmReplace
 import com.example.tms_classwork_android.presentation.home.HomeFragment
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), LoginView {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LoginViewModel by viewModels()
-
+    @Inject
+    private lateinit var loginPresenter: LoginPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,21 +31,20 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginPresenter.setView(this)
 
         binding.buttonShowCreds.setOnClickListener {
-            viewModel.loginUser(
+            loginPresenter.loginUser(
                 binding.etLogin.text.toString(),
                 binding.etPassword.text.toString()
             )
         }
-
-        viewModel.nav.observe(viewLifecycleOwner) {
-            fmReplace(parentFragmentManager, HomeFragment(), false)
-        }
-
     }
 
+    override fun userLoggedIn() {
+        fmReplace(parentFragmentManager, HomeFragment(), false)
 
+    }
 }
 
 

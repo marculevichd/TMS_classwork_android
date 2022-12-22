@@ -6,12 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentHomeBinding
-import com.example.tms_classwork_android.databinding.FragmentLoginBinding
-import com.example.tms_classwork_android.presentation.Navigation
-import com.example.tms_classwork_android.presentation.Navigation.fmReplace
-import com.example.tms_classwork_android.presentation.auth.LoginViewModel
+import com.example.tms_classwork_android.utils.Navigation.fmReplace
 import com.example.tms_classwork_android.presentation.auth.OnBoardingFragment
 import dagger.hilt.android.AndroidEntryPoint
 

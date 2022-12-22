@@ -10,15 +10,17 @@ import com.example.tms_classwork_android.presentation.auth.LoginFragment
 import com.example.tms_classwork_android.presentation.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.zip.Inflater
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainView {
 
 
     private var _binding: ActivityMainBinding? = null
-    private val viewModel: MainViewModel by viewModels()
 
+    @Inject
+    lateinit var mainPresenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,20 +28,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(_binding!!.root)
         setContentView(R.layout.activity_main)
 
-        viewModel.checkUserExists()
+        mainPresenter.setView(this)
 
-        viewModel.userExist.observe(this) {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.add(
-                R.id.activity_container,
-                when (it) {
-                    true -> HomeFragment()
-                    false -> LoginFragment()
-                }
-            )
-            fragmentTransaction.commit()
-        }
+        mainPresenter.checkUserExists()
 
+
+    }
+
+    override fun userExistsResult(userExist: Boolean) {
+
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(
+            R.id.activity_container,
+            when (userExist) {
+                true -> HomeFragment()
+                false -> LoginFragment()
+            }
+        )
+        fragmentTransaction.commit()
 
     }
 }
