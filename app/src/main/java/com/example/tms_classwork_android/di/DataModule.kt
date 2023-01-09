@@ -2,7 +2,6 @@ package com.example.tms_classwork_android.di
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import com.example.tms_classwork_android.data.auth.AuthRepositoryImpl
 import com.example.tms_classwork_android.data.items.ItemsRepositoryImpl
 import com.example.tms_classwork_android.data.shedpref.SharedPreferencesHelper
@@ -27,10 +26,8 @@ abstract class DataModule {
     abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
 
 
-
     companion object{
         private const val SP_KEY = "SP_KEY"
-
 
         @Provides
         fun provideSharedPreferences(@ApplicationContext context: Context):SharedPreferencesHelper{
@@ -38,8 +35,6 @@ abstract class DataModule {
                 context.getSharedPreferences(SP_KEY, MODE_PRIVATE)
             )
         }
-
-
     }
 }
 
