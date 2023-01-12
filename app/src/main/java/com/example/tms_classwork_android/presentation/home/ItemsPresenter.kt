@@ -23,13 +23,13 @@ class ItemsPresenter @Inject constructor(private val itemsInteractor: ItemsInter
     }
 
     fun itemClicked(name: String, date: String, imageView: Int) {
-        itemsView.itemClicked(NavigateWithBundle(name, date, imageView))
+        itemsView.itemClicked(NavigateWithBundle(imageView,name, date ))
     }
 }
 
 
 data class NavigateWithBundle(
+    val image: Int,
     val name: String,
     val date: String,
-    val image: Int
 )

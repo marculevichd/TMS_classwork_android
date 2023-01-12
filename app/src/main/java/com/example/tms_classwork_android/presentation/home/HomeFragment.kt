@@ -7,18 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.tms_classwork_android.databinding.FragmentHomeBinding
+import com.example.tms_classwork_android.domain.model.UserModel
+import com.example.tms_classwork_android.presentation.MainPresenter
 import com.example.tms_classwork_android.utils.Navigation.fmReplace
 import com.example.tms_classwork_android.presentation.auth.OnBoardingFragment
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), HomeView {
 
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: HomeViewModel by viewModels()
+    @Inject
+    lateinit var homePresenter: HomePresenter
 
 
     override fun onCreateView(
@@ -33,17 +37,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.showUserData()
+        homePresenter.setView(this)
 
-        viewModel.userCreds.observe(viewLifecycleOwner) {
-            binding.textViewUserCreds.text = "${it.userName} \n ${it.userPassword}"
-        }
+        homePresenter.showUserData()
 
         binding.btnGoToOnBoarding.setOnClickListener {
             fmReplace(parentFragmentManager, OnBoardingFragment(), false)
         }
+    }
 
-
+    override fun showUserData(userModel: UserModel) {
+        binding.textViewUserCreds.text = "${userModel.userName} \n ${userModel.userPassword}"
     }
 
 }

@@ -18,7 +18,7 @@ class LoginFragment : Fragment(), LoginView {
     private val binding get() = _binding!!
 
     @Inject
-    private lateinit var loginPresenter: LoginPresenter
+    lateinit var loginPresenter: LoginPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
