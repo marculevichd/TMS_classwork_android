@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentOnBoardingBinding
-import com.example.tms_classwork_android.presentation.Navigation
-import com.example.tms_classwork_android.presentation.home.ItemsFragment
+import com.example.tms_classwork_android.utils.NavHelper.navigateWithDeleteBackStack
 
 
 class OnBoardingFragment : Fragment() {
@@ -33,8 +35,10 @@ class OnBoardingFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.nav.observe(viewLifecycleOwner) {
+
             if (it != null) {
-                Navigation.fmReplace(parentFragmentManager, ItemsFragment(), false)
+                navigateWithDeleteBackStack(it.destinationId, it.removeFragmentId)
+
                 viewModel.finishPerformed()
             }
         }

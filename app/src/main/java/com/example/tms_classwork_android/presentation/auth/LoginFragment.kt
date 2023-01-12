@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.databinding.FragmentLoginBinding
-import com.example.tms_classwork_android.presentation.Navigation.fmReplace
 import com.example.tms_classwork_android.presentation.home.HomeFragment
-import dagger.hilt.EntryPoint
+import com.example.tms_classwork_android.utils.NavHelper.navigate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,7 +42,11 @@ class LoginFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            fmReplace(parentFragmentManager, HomeFragment(), false)
+            if(it!=null){
+                navigate(it)
+                viewModel.userNavigated()
+            }
+
         }
 
     }

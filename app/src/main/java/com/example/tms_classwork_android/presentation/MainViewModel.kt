@@ -1,10 +1,10 @@
 package com.example.tms_classwork_android.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.tms_classwork_android.R
 import com.example.tms_classwork_android.domain.auth.AuthInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,19 +16,16 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private val _userExists = MutableLiveData<Boolean>()
-    val userExist: LiveData<Boolean> = _userExists
-
+    private val _nav = MutableLiveData<Int>()
+    val nav: LiveData<Int> = _nav
 
     fun checkUserExists() {
         viewModelScope.launch {
-
-            try {
-                _userExists.value = authInteractor.checkUserExist()
-            } catch (e: Exception) {
-                Log.w("exception", "checkUserExists FAILED")
+            val doesUserExists = authInteractor.checkUserExist()
+            _nav.value = when (doesUserExists) {
+                true -> R.navigation.main_graph
+                false -> R.navigation.auth_graph
             }
-
         }
     }
 }

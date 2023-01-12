@@ -9,11 +9,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.tms_classwork_android.R
-import com.example.tms_classwork_android.presentation.auth.LoginFragment
 import com.example.tms_classwork_android.utils.BundleConstants.IMAGE_VIEW
 import com.example.tms_classwork_android.utils.BundleConstants.DATE
 import com.example.tms_classwork_android.utils.BundleConstants.NAME
+import com.example.tms_classwork_android.utils.NavHelper.navigate
+import com.example.tms_classwork_android.utils.NavHelper.replaceGraph
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,10 +56,9 @@ class DetailsFragment : Fragment() {
         }
 
         viewModel.nav.observe(viewLifecycleOwner) {
-            parentFragmentManager
-                .beginTransaction()
-                .replace(R.id.activity_container, LoginFragment())
-                .commit()
+            if (it != null) {
+                replaceGraph(it)
+            }
         }
 
     }
