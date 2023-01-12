@@ -5,8 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.tms_classwork_android.domain.auth.AuthInteractor
 import com.example.tms_classwork_android.domain.model.UserModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class HomeViewModel @Inject constructor(
     private val authInteractor: AuthInteractor
 ) : ViewModel() {
