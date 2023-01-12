@@ -3,8 +3,11 @@ package com.example.tms_classwork_android.presentation.auth
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class OnBoardingViewModel : ViewModel() {
+@HiltViewModel
+class OnBoardingViewModel @Inject constructor() : ViewModel() {
 
 
     val onBoardingText = MutableLiveData<String>("default value")
